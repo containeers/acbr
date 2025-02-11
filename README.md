@@ -15,12 +15,12 @@ A tool to backup and restore AWS Cognito User Pools, supporting both CLI and AWS
 
 *Install from source*
 ```bash
-go install github.com/yourusername/acbr@latest
+go install github.com/containeers/acbr@latest
 ```
 
 *Or build locally*
 ```bash
-git clone https://github.com/yourusername/acbr.git
+git clone https://github.com/containeers/acbr.git
 cd acbr
 go build
 ```
@@ -51,21 +51,21 @@ go build
        -pool us-east-1_yyyyy \
        -region us-east-1 \
        -backup-path ./backups/cognito-backup-xxxxx.json \
-       -default-pwd "TempPass123!"
+       -default-pwd 'TempPass123!'
 
 # Restore from S3
 ./acbr -mode restore \
        -pool us-east-1_yyyyy \
        -region us-east-1 \
        -backup-path s3://my-bucket/cognito/backups/cognito-backup-xxxxx.json \
-       -default-pwd "TempPass123!"
+       -default-pwd 'TempPass123!'
 
 # Restore only users and groups
 ./acbr -mode restore \
        -pool us-east-1_yyyyy \
        -region us-east-1 \
        -backup-path ./backups/cognito-backup-xxxxx.json \
-       -default-pwd "TempPass123!" \
+       -default-pwd 'TempPass123!' \
        -users-only
 ```
 
