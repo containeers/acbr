@@ -32,8 +32,15 @@ jobs:
 
       - name: Build for multiple platforms
         run: |
-          # Extract version from tag
-          VERSION=${GITHUB_REF#refs/tags/}
+          # If triggered by a tag push, extract from GITHUB_REF
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+          else
+            # Otherwise, get the latest tag from the repo
+            VERSION=$(git describe --tags --abbrev=0)
+          fi
+
+          echo "Version: $VERSION"
           
           # Build with version info
           FLAGS="-X main.Version=$VERSION"
